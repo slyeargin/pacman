@@ -7,8 +7,6 @@
     $('#controls').on('click', '#start', startGame);
   }
 
-  var pac = {};
-
   function startGame() {
     clearBoard();
     $('body').keydown(move);
@@ -22,19 +20,23 @@
   }
 
   function loadPieces (){
+    setPellet();
+    setPacman();
+  }
+
+  function setPacman() {
+    var x = Math.floor((Math.random()*2));
+    var y = Math.floor((Math.random()*2)+1);
+
+    $('td[data-x='+x+'][data-y='+y+']').addClass('pacman');
+  }
+
+  function setPellet(){
     var plt = {};
 
-    pac.x = Math.floor((Math.random()*2));
-    pac.y = Math.floor((Math.random()*2)+1);
     plt.x = Math.floor((Math.random()*2));
     plt.y = Math.floor((Math.random()*2)+1);
 
-    console.log(pac.x);
-    console.log(pac.y);
-    console.log(plt.x);
-    console.log(plt.y);
-
-    $('td[data-x='+pac.x+'][data-y='+pac.y+']').addClass('pacman');
     $('td[data-x='+plt.x+'][data-y='+plt.y+']').addClass('pellet');
   }
 
@@ -43,31 +45,34 @@
       event.preventDefault();
     }
 
+    var pacX = $('.pacman').data('x');
+    var pacY = $('.pacman').data('y');
+
     switch(event.keyCode){
       case 38:
-        if (pac.y > 0) {
-          pac.y--;
+        if (pacY === 1 || pacY === 2) {
+          pacY--;
         }
         break;
       case 40:
-        if (pac.y < 2) {
-          pac.y++;
+        if (pacY === 0 || pacY === 1) {
+          pacY++;
         }
         break;
       case 37:
-        if (pac.x === 1){
-          pac.x--;
+        if (pacX === 1){
+          pacX--;
         }
         break;
       case 39:
-        if (pac.x === 0){
-          pac.x++;
+        if (pacX === 0){
+          pacX++;
         }
         break;
     }
 
     $('.pacman').removeClass('pacman');
-    $('td[data-x='+pac.x+'][data-y='+pac.y+']').addClass('pacman');
+    $('td[data-x='+pacX+'][data-y='+pacY+']').addClass('pacman');
 
     isWin();
 
