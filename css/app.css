@@ -1,0 +1,36 @@
+body {
+  background: #000;
+}
+h1,
+#controls,
+#game {
+  margin: 0 auto;
+  text-align: center;
+}
+h1 {
+  color: #fff;
+  margin: 25px;
+}
+#game {
+  border: 3px solid #014ada;
+  margin-top: 25px;
+}
+#game tr td {
+  width: 150px;
+  height: 150px;
+  border: 1px dotted rgba(255, 255, 255, 0.3);
+}
+.pellet {
+  width: 100%;
+  height: 100%;
+  background: url('../media/pellet.png');
+  background-size: cover;
+  z-index: 1;
+}
+.pacman {
+  width: 100%;
+  height: 100%;
+  background: url('../media/Pacman.svg');
+  background-size: cover;
+  z-index: 3;
+}
