@@ -2,10 +2,27 @@ doctype html
 html(lang='en')
   head
     meta(charset='utf-8')
-    title Client Template
+    title Pac-Man
+    link(rel='stylesheet', href='http://yui.yahooapis.com/pure/0.5.0-rc-1/pure-min.css')
+    link(rel='stylesheet', href='http://yui.yahooapis.com/pure/0.5.0-rc-1/grids-responsive-min.css')
     link(rel='stylesheet', href='./css/app.css')
   body
-    h1 Client Template
+    h1 Pac-Man
+
+    .pure-g
+      .pure-u-1
+        #controls
+          button#start Start
+
+    .pure-g
+      .pure-u-1
+        table#game.pure-table.pure-table-bordered
+          tbody
+            - for (var i = 0; i < 3; i++)
+                tr
+                  - for (var j = 0; j < 2; j++)
+                    - var squareClass = 'square';
+                    td(class=squareClass data-x=j data-y=i)
 
     script(src='./js/vendor/jquery-2.1.0.js')
     script(src='./js/source/main.js')
